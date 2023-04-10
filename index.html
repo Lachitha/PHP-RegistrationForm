@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Member Registration Form</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <form action="{{ route('register') }}" method="POST">
+         
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" name="name" id="name" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" name="email" id="email" required>
+                <div id="email-error" class="error"></div>
+            </div>
+
+            <div class="form-group">
+                <label for="contact_no">Contact No:</label>
+                <input type="text" name="contact_no" id="contact_no" required>
+            </div>
+
+            <div class="form-group">
+                <label for="address">Home Address:</label>
+                <textarea name="address" id="address" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" name="password" id="password" required>
+            </div>
+
+            <div class="form-group">
+                <label for="confirm_password">Confirm Password:</label>
+                <input type="password" name="confirm_password" id="confirm_password" required>
+            </div>
+        </form>
+       
+    </div>
+
+    <div class="subbtn">
+        <input type="submit" value="Register">
+    </div>
+
+    <script>
+        // Email validation function
+        function validateEmail() {
+            var email = document.getElementById("email").value;
+            var emailError = document.getElementById("email-error");
+            var pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+            if (pattern.test(email)) {
+                emailError.innerHTML = "";
+                return true;
+            } else {
+                emailError.innerHTML = "Please enter a valid email address";
+                return false;
+            }
+        }
+
+        // Form submission validation
+        var form = document.querySelector('form');
+        form.addEventListener('submit', function(event) {
+            if (!validateEmail()) {
+                event.preventDefault();
+            }
+        });
+    </script>
+</body>
+</html>
